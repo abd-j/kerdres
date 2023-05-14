@@ -36,7 +36,7 @@ export class SelledAuction {
 
     this.bids.push(newBid);
 
-    if (newBid.amount > this.reservePrice) {
+    if (newBid.amount >= this.reservePrice) {
       if (!this.bestBid) {
         this.bestBid = newBid;
         this.winningPrice = newBid.amount;
@@ -52,7 +52,7 @@ export class SelledAuction {
     }
     if (
       bid.when.getTime() >
-      this.startTime!.getTime() + this.durationInSeconds
+      this.startTime!.getTime() + this.durationInSeconds * 1000
     ) {
       throw new Error("Bid not valid: Auction is finished");
     }
